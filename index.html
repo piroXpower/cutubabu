@@ -41,7 +41,7 @@
       z-index: 5;
       width: 100%;
       max-width: 480px;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.82);
       backdrop-filter: blur(16px);
       border: 3px solid rgba(255, 255, 255, 0.9);
       border-radius: 36px;
@@ -136,8 +136,8 @@
 
     .polaroid-stack-zone {
       position: relative;
-      height: 340px;
-      margin: 20px 0 10px 0;
+      height: 350px;
+      margin: 18px 0 10px 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -145,7 +145,7 @@
 
     .polaroid {
       position: absolute;
-      width: 260px;
+      width: 270px;
       background: #ffffff;
       border-radius: 16px;
       padding: 12px 12px 18px 12px;
@@ -159,7 +159,7 @@
 
     .polaroid img {
       width: 100%;
-      height: 180px;
+      height: 185px;
       object-fit: cover;
       border-radius: 10px;
       display: block;
@@ -198,7 +198,7 @@
 
     .side-action-badge {
       position: absolute;
-      right: 12px;
+      right: 10px;
       top: 250px;
       text-align: center;
       cursor: pointer;
@@ -238,19 +238,30 @@
       display: block;
     }
 
+    .counter-tag {
+      font-size: 11px;
+      color: #b05474;
+      font-weight: 800;
+      margin-bottom: 6px;
+      display: inline-block;
+      background: #ffe3eb;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
     .heartfelt-msg {
       font-size: 14px;
       line-height: 1.6;
       color: #553440;
       padding: 0 14px;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     .signature {
       font-size: 12px;
       font-weight: 700;
       color: #924d67;
-      margin: 10px 0 14px 0;
+      margin: 8px 0 14px 0;
     }
 
     .action-btn {
@@ -267,6 +278,7 @@
       align-items: center;
       gap: 6px;
       transition: transform 0.2s, box-shadow 0.2s;
+      margin: 4px;
     }
 
     .action-btn:hover {
@@ -277,17 +289,19 @@
     .letter-btn {
       width: 90%;
       max-width: 320px;
-      margin-top: 10px;
       background: linear-gradient(135deg, #c73663, #a11f48);
-      font-size: 14px;
       padding: 12px 20px;
+    }
+
+    .puzzle-btn {
+      background: linear-gradient(135deg, #8e44ad, #d12758);
     }
 
     .bottom-stickers-tray {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      margin-top: 24px;
+      margin-top: 22px;
       padding-top: 16px;
       border-top: 1px dashed rgba(220, 90, 130, 0.25);
     }
@@ -305,13 +319,10 @@
       transform: scale(1.15) rotate(-3deg);
     }
 
-    .sticker-item img {
-      width: 52px;
-      height: 52px;
-      object-fit: cover;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    .sticker-emoji {
+      font-size: 38px;
+      line-height: 1;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.1));
     }
 
     .sticker-item span {
@@ -324,12 +335,12 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.52);
       backdrop-filter: blur(6px);
       z-index: 100;
       justify-content: center;
       align-items: center;
-      padding: 18px;
+      padding: 16px;
     }
 
     .modal-box {
@@ -376,6 +387,40 @@
     .modal-content-area li {
       margin-bottom: 6px;
     }
+
+    /* Puzzle Game Specific Styles */
+    .puzzle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      grid-gap: 6px;
+      justify-content: center;
+      margin: 18px auto;
+    }
+
+    .puzzle-tile {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #ffd3e2, #ffafcc);
+      border: 2px solid #ff7597;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 800;
+      color: #b01a47;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .puzzle-tile.empty {
+      background: #f7f1f4;
+      border: 2px dashed #e2ccd6;
+      cursor: default;
+      box-shadow: none;
+    }
   </style>
 </head>
 <body>
@@ -386,50 +431,35 @@
 
   <main class="main-canvas">
 
-    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Smiling%20Face%20with%20Hearts.png" class="deco-sticker" style="width: 44px; left: 12px; top: 10px;" alt="love" />
-    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Heart%20with%20Arrow.png" class="deco-sticker" style="width: 44px; right: 12px; top: 10px;" alt="cupid" />
+    <div class="deco-sticker" style="font-size: 34px; left: 14px; top: 12px;">🥰</div>
+    <div class="deco-sticker" style="font-size: 34px; right: 14px; top: 12px;">💘</div>
 
     <h1>Our Adorable Journey & A<br/>Surprise for Shubhi Mishra!</h1>
-    <span class="sub-tag">(Swipe or Tap the Cards with Love)</span>
+    <span class="sub-tag">(Tap card to see 60+ cute reasons why I love you)</span>
 
     <div class="audio-player-bar">
       <button class="play-btn" id="musicToggleBtn" onclick="toggleAudio()" title="Play Music">▶</button>
       <div class="track-info">
-        <div class="track-title" id="songName">Ra.One - Dildara (Stand By Me)</div>
+        <div class="track-title" id="songName">Mishra Ji Ka Favorite hai 🫣🥹</div>
         <div class="track-sub">Background Love Track</div>
       </div>
       <span class="sound-wave">🎵</span>
       <audio id="bgSong" loop preload="auto" src="song.mp3"></audio>
     </div>
 
-    <div class="speech-bubble">Hope she loves the surprises too! 💭</div>
+    <div class="speech-bubble">Tap card for next love note! 💭</div>
 
-    <div class="polaroid-stack-zone" id="polaroidZone" onclick="cycleStack()">
-      
-      <!-- Card 3 -->
-      <div class="polaroid" id="card3" style="transform: rotate(6deg); z-index: 1;">
-        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80" alt="Love Hearts" />
-        <div class="polaroid-caption">
-          "I love you more than sleep… and honestly, Shubhi, that is a massive emotional investment!" 😴❤️
+    <div>
+      <span class="counter-tag" id="reasonCounter">Reason #1 of 60</span>
+    </div>
+
+    <div class="polaroid-stack-zone" id="polaroidZone" onclick="nextGreeting()">
+      <div class="polaroid" id="activePolaroid" style="transform: rotate(-1deg); z-index: 3;">
+        <img id="polaroidImg" src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600&auto=format&fit=crop&q=80" alt="Romantic Memory" />
+        <div class="polaroid-caption" id="polaroidText">
+          "To my dearest Shubhi Mishra! My love, my partner, and the cuteness queen. ❤️"
         </div>
       </div>
-
-      <!-- Card 2 -->
-      <div class="polaroid" id="card2" style="transform: rotate(-5deg); z-index: 2;">
-        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80" alt="Couple Hands" />
-        <div class="polaroid-caption">
-          "The sweetest smile in this whole universe! Soo cute, pure trouble, and all mine!" ✨
-        </div>
-      </div>
-
-      <!-- Card 1 (Top) -->
-      <div class="polaroid" id="card1" style="transform: rotate(1deg); z-index: 3;">
-        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600&auto=format&fit=crop&q=80" alt="Happy Moments" />
-        <div class="polaroid-caption">
-          To my dearest Shubhi Mishra! My love, my partner, and the cuteness queen. ❤️
-        </div>
-      </div>
-
     </div>
 
     <div class="side-action-badge" onclick="triggerHugSurprise()">
@@ -448,7 +478,8 @@
     </div>
 
     <div>
-      <button class="action-btn" onclick="cycleStack()">Replay 🐱</button>
+      <button class="action-btn" onclick="nextGreeting()">Next Sweet Note 🐱</button>
+      <button class="action-btn puzzle-btn" onclick="openPuzzleModal()">Love Puzzle 🧩</button>
     </div>
 
     <div>
@@ -457,17 +488,17 @@
 
     <div class="bottom-stickers-tray">
       <div class="sticker-item" onclick="triggerProposal()">
-        <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Ring.png" alt="Proposal" />
+        <span class="sticker-emoji">💍</span>
         <span>Proposal</span>
       </div>
 
       <div class="sticker-item" onclick="triggerSorry()">
-        <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Pleading%20Face.png" alt="Say Sorry" />
+        <span class="sticker-emoji">🥺</span>
         <span>Say Sorry</span>
       </div>
 
       <div class="sticker-item" onclick="triggerConfess()">
-        <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Kissing%20Face%20with%20Closed%20Eyes.png" alt="Confess" />
+        <span class="sticker-emoji">💖</span>
         <span>Confess</span>
       </div>
     </div>
@@ -483,121 +514,101 @@
     </div>
   </div>
 
+  <div class="modal-backdrop" id="puzzleModal" onclick="closePuzzle(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <span class="close-modal" onclick="closePuzzle()">&times;</span>
+      <h2 style="font-size: 22px; color: #d12758; margin-bottom: 4px;">Solve To Unlock My Heart 🧩</h2>
+      <p style="font-size: 13px; color: #777;">Order tiles from 1 to 8 to reveal the special surprise!</p>
+      
+      <div class="puzzle-grid" id="puzzleBoard"></div>
+
+      <button class="action-btn" onclick="shufflePuzzle()">Shuffle Again 🔄</button>
+    </div>
+  </div>
+
   <script>
-    let cardIndex = 0;
-    const cards = [
-      document.getElementById('card1'),
-      document.getElementById('card2'),
-      document.getElementById('card3')
+    // 60+ Unique Romantic & Funny Greetings for Shubhi Mishra
+    const greetings = [
+      "To my dearest Shubhi Mishra! My love, my partner, and the cuteness queen. ❤️",
+      "I love you more than sleep… and honestly, that is a massive emotional investment! 😴",
+      "The sweetest smile in this whole universe! Soo cute, pure trouble, and all mine! ✨",
+      "Are you a magician? Because whenever I look at you, everyone else disappears. 🪄",
+      "Every single day feels brighter with you, Shubhi! My lifetime partner. 💕",
+      "You are my favorite notification of the day, no matter how busy life gets! 📱",
+      "You stole my heart fair and square, but could you stop being so cute? It's distracting! 😍",
+      "I promise to always give you the bigger slice of pizza and the last bite of dessert. 🍕",
+      "If you were a vegetable, you'd be a cute-cumber! 🥒✨",
+      "My heart beats in 4G when you text, and 5G when I see you smile! 💓",
+      "You're the only person I’d share my French fries with (and that's pure love). 🍟",
+      "I love you even when you're super hangry and demanding snacks! 🍫",
+      "Life without you would be like a pencil without lead: completely pointless. ✏️",
+      "Shubhi, you are my favorite human pillow and my forever home. 🏡💖",
+      "You're the marshmallows in my hot chocolate and the sprinkles on my ice cream! 🍨",
+      "I love you from the bottom of my heart to the tips of my toes! 👣❤️",
+      "You make my heart do little happy dances every time your name pops up! 💃",
+      "Out of 8 billion people, my heart picked you with zero hesitation. 🌍✨",
+      "You're cute when you're happy, cute when you're mad, and cute when you're sleepy! 🥱",
+      "I love you more than all the stars in the night sky combined. 🌌",
+      "You’re my sunshine on rainy days and my warm blanket on cold nights. ☀️🧣",
+      "Every love song suddenly makes complete sense whenever I think of you. 🎶",
+      "I promise to laugh at all your jokes, even the ones that make zero sense! 😂",
+      "Shubhi, you’re the sweetest chapter in my entire life story. 📖❤️",
+      "You hold my hand for a little while, but you hold my heart forever. 🤝",
+      "If loving you was a job, I’d gladly work 24/7 without taking a weekend off. 💼",
+      "You're not just my partner; you're my best friend and my favorite chaos. 🌪️💕",
+      "Your laugh is literally my favorite sound in the entire galaxy. 🎵✨",
+      "I fall in love with you a little bit more every single day. 📈❤️",
+      "You make ordinary days feel like fairy tales with that cute smile. 🧚‍♀️",
+      "Thank you for being the sweetest, most caring girl in existence. 🌸",
+      "I love your silly poses, your dramatic reactions, and your golden heart. 📸",
+      "You are the peace in my noisy world, Shubhi Mishra. 🕊️",
+      "Forever isn't even long enough to spend with someone as cute as you. ⏳",
+      "I love you past the moon, beyond Jupiter, and straight into infinity! 🚀💫",
+      "My life became 1000x more colorful the moment you walked into it. 🎨",
+      "You're the cheese to my macaroni and the sugar in my tea! 🫖🧀",
+      "I promise to always hold your bags and listen to all your gossip with full focus! 🛍️",
+      "No refunds, no exchanges: you're stuck with me forever, Shubhi! 😜",
+      "You have the kindest eyes and the warmest heart I've ever known. 👀❤️",
+      "Just thinking of you gives me butterflies all over again! 🦋",
+      "You are my favorite thought before falling asleep and my first when waking up. 🌅",
+      "Thank you for understanding all my weirdness and loving me anyway! 🛸",
+      "I love you more today than yesterday, but not as much as tomorrow! 📅",
+      "You're the sweetest troublemaker I ever met, and I love you for it! 😈❤️",
+      "My favorite place in the whole world will always be right next to you. 📍",
+      "Even your grumpy face is 10/10 illegally adorable! 😤💕",
+      "You make my world a softer, kinder, and much happier place. 🌸",
+      "I’d choose you in a hundred lifetimes, in any universe, without a doubt. 🌌",
+      "You're my personal mood-lifter and my sweetest addiction! 🍭",
+      "Thank you for being the best girlfriend cum lifetime partner ever! 🏆",
+      "I love the way your nose crinkles when you laugh really hard. 👃✨",
+      "You are my greatest adventure and my safest haven. 🗺️",
+      "Every single moment without you just feels like counting down till I see you. ⏰",
+      "You make my heart smile in ways nobody else ever could. 😊",
+      "I love you more than chai on a rainy monsoon evening! ☕🌧️",
+      "I promise to always keep you safe, happy, well-fed, and smiling! 🛡️❤️",
+      "You are pure perfection in my eyes, my little cuteness queen Shubhi! 👑",
+      "No matter where life takes us, my hands will always be holding yours. 🤝💖",
+      "I love you, Shubhi Mishra. Today, tomorrow, and for all eternity! ♾️❤️"
     ];
 
-    function cycleStack() {
-      const topCard = cards[cardIndex % cards.length];
-      topCard.style.transform = 'translateY(-140px) scale(0.9) rotate(-15deg)';
-      topCard.style.opacity = '0';
+    const photos = [
+      "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&auto=format&fit=crop&q=80"
+    ];
+
+    let currentGreetingIdx = 0;
+
+    function nextGreeting() {
+      const card = document.getElementById('activePolaroid');
+      card.style.transform = 'translateY(-80px) rotate(-12deg) scale(0.9)';
+      card.style.opacity = '0.3';
 
       setTimeout(() => {
-        cards.forEach((c, idx) => {
-          let newOrder = (idx - cardIndex + cards.length) % cards.length;
-          c.style.zIndex = newOrder;
-        });
-
-        topCard.style.transform = (cardIndex % 2 === 0) ? 'rotate(5deg) scale(0.95)' : 'rotate(-5deg) scale(0.95)';
-        topCard.style.opacity = '1';
-        cardIndex++;
-
-        confetti({
-          particleCount: 25,
-          spread: 50,
-          origin: { y: 0.6 }
-        });
-      }, 350);
-    }
-
-    const audio = document.getElementById('bgSong');
-    const playBtn = document.getElementById('musicToggleBtn');
-    let isPlaying = false;
-
-    function toggleAudio() {
-      if (!isPlaying) {
-        audio.play().then(() => {
-          isPlaying = true;
-          playBtn.innerText = '❚❚';
-        }).catch(e => {
-          console.warn("Audio waiting for explicit interaction or song.mp3 missing:", e);
-        });
-      } else {
-        audio.pause();
-        isPlaying = false;
-        playBtn.innerText = '▶';
-      }
-    }
-
-    function showModal(title, htmlContent, gifUrl) {
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalDesc').innerHTML = htmlContent;
-      document.getElementById('modalImg').src = gifUrl;
-      document.getElementById('customModal').style.display = 'flex';
-
-      confetti({ particleCount: 35, spread: 65 });
-    }
-
-    function closeModal() {
-      document.getElementById('customModal').style.display = 'none';
-    }
-
-    function openLetterModal() {
-      const letterHtml = `
-        <p><strong>Dearest Shubhi Mishra,</strong></p><br/>
-        <p>If being ridiculously cute was an actual crime, you’d already be serving a lifetime sentence with zero chance of parole. Luckily for you, I happen to be your biggest fan, your emergency snack provider, and your permanent partner-in-crime for life.</p><br/>
-        <p>Out of roughly eight billion humans on this floating rock, my heart somehow locked onto the one girl whose smile instantly reboots my entire day. I don’t just like you—I love you to the moon, past all the stars, through all the network lag, and straight into infinity. You are my favorite notification, my daily dose of peace, and the sweetest trouble I never want to escape.</p><br/>
-        <p><strong>I solemnly promise to always:</strong></p>
-        <ul>
-          <li>Agree with your movie and food choices (eventually).</li>
-          <li>Give you the bigger half of the dessert, even when I'm crying inside.</li>
-          <li>Listen to all your random stories, gossips, and daily adventures with complete seriousness.</li>
-          <li>Love you endlessly—even when you’re being stubborn, hangry, or impossible to handle!</li>
-        </ul>
-        <p>You aren’t just my girlfriend; you are my home, my peace, and my future life partner. Thank you for filling my days with warmth, endless laughter, and unmatched cuteness.</p><br/>
-        <p style="text-align: right; font-family: 'Caveat', cursive; font-size: 20px; color: #d12758;">
-          Forever yours,<br/>Your permanent headache & lifetime lover ❤️✨
-        </p>
-      `;
-      showModal("To My Shubhi Mishra 💌", letterHtml, "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Smiling%20Face%20with%20Hearts.png");
-    }
-
-    function triggerProposal() {
-      const html = `
-        <p><strong>Fair warning, Shubhi:</strong></p><br/>
-        <p>If you agree to stay with me forever and ever, there are strictly no returns, no exchanges, and absolutely no refunds allowed! 😜</p><br/>
-        <p>Will you officially agree to be my cuteness queen and life partner for eternity? 💍✨</p>
-      `;
-      showModal("Lifetime Contract 💍", html, "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Ring.png");
-    }
-
-    function triggerSorry() {
-      const html = `
-        <p>I’m deeply sorry for whatever silly thing I did, whatever I didn’t do, and whatever you dreamt I did last night while sleeping! 🥺👉👈</p><br/>
-        <p>Please forgive your favorite boy? I bring snacks and infinite hugs! 🍫🌸</p>
-      `;
-      showModal("A Very Sincere Apology 🥺", html, "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Pleading%20Face.png");
-    }
-
-    function triggerConfess() {
-      const html = `
-        <p>You stole my heart fair and square, but could you at least stop being so illegally adorable every single hour of the day?</p><br/>
-        <p>It’s genuinely distracting! I love you so much, Shubhi Mishra! 🌸💖</p>
-      `;
-      showModal("Official Confession 💕", html, "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Heart%20with%20Ribbon.png");
-    }
-
-    function triggerHugSurprise() {
-      const html = `
-        <p>Sending you the biggest, warmest, and squishiest cuddle in the entire universe!</p><br/>
-        <p>No escape allowed! You have been captured by love! 🫂💖</p>
-      `;
-      showModal("Warmest Hug for Shubhi! 🫂", html, "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Hugging%20Face.png");
-    }
-  </script>
-</body>
-</html>
+        currentGreetingIdx = (currentGreetingIdx + 1) % greetings.length;
+        
+        document.getElementById('polaroidText').innerText = `"${greetings[currentGreetingIdx]}"`;
+        document.getElementById('polaroidImg').src = photos[currentGreetingIdx % photos.length];
+        document.getElementById('reasonCounter').innerText = `Reason #${currentGreetingIdx + 1} of ${gr
