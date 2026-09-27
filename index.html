@@ -1,766 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Adorable Journey & A Surprise for Shubhi Mishra! ❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at 10% 20%, #ffeaf1 0%, #ffd4e2 40%, #ffc1d6 100%);
-      font-family: 'Nunito', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 24px 14px 60px 14px;
-      position: relative;
-      overflow-x: hidden;
-      color: #4a2835;
-    }
-
-    .bokeh {
-      position: fixed;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.45);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .main-canvas {
-      position: relative;
-      z-index: 5;
-      width: 100%;
-      max-width: 480px;
-      background: rgba(255, 255, 255, 0.84);
-      backdrop-filter: blur(16px);
-      border: 3px solid rgba(255, 255, 255, 0.9);
-      border-radius: 36px;
-      box-shadow: 0 20px 50px rgba(220, 80, 120, 0.22);
-      padding: 28px 18px;
-      text-align: center;
-    }
-
-    .deco-sticker {
-      position: absolute;
-      user-select: none;
-      pointer-events: none;
-      z-index: 4;
-      font-size: 32px;
-    }
-
-    h1 {
-      font-size: 22px;
-      font-weight: 800;
-      color: #d12758;
-      line-height: 1.35;
-      margin-bottom: 4px;
-    }
-
-    .sub-tag {
-      font-size: 13px;
-      font-weight: 700;
-      color: #9c4d6a;
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-      display: block;
-    }
-
-    .audio-player-bar {
-      background: rgba(255, 240, 245, 0.95);
-      border: 1.5px solid #ffccd8;
-      border-radius: 50px;
-      padding: 8px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      max-width: 380px;
-      margin: 0 auto 18px auto;
-      box-shadow: 0 4px 15px rgba(240, 100, 140, 0.15);
-    }
-
-    .play-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #e63968;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.2s transform;
-      flex-shrink: 0;
-    }
-
-    .play-btn:active {
-      transform: scale(0.92);
-    }
-
-    .track-info {
-      text-align: left;
-      flex-grow: 1;
-      overflow: hidden;
-    }
-
-    .track-title {
-      font-size: 13px;
-      font-weight: 800;
-      color: #4b2331;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    .track-sub {
-      font-size: 10px;
-      color: #925368;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .counter-tag {
-      font-size: 12px;
-      color: #b05474;
-      font-weight: 800;
-      margin-bottom: 8px;
-      display: inline-block;
-      background: #ffe3eb;
-      padding: 4px 12px;
-      border-radius: 20px;
-    }
-
-    .polaroid-stack-zone {
-      position: relative;
-      height: 350px;
-      margin: 10px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .polaroid {
-      position: absolute;
-      width: 270px;
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 12px 12px 18px 12px;
-      box-shadow: 0 12px 30px rgba(180, 60, 90, 0.18);
-      border: 1px solid #ffe3ec;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .polaroid img {
-      width: 100%;
-      height: 185px;
-      object-fit: cover;
-      border-radius: 10px;
-      display: block;
-      background: #fff5f8;
-    }
-
-    .polaroid-caption {
-      font-family: 'Caveat', cursive;
-      font-size: 19px;
-      color: #4a2d39;
-      line-height: 1.35;
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    .speech-bubble {
-      position: absolute;
-      top: -24px;
-      right: -10px;
-      background: #ffffff;
-      border: 1.5px solid #ffccd9;
-      border-radius: 20px;
-      padding: 6px 12px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #632d40;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-      z-index: 6;
-    }
-
-    .side-action-badge {
-      position: absolute;
-      right: 8px;
-      top: 250px;
-      text-align: center;
-      cursor: pointer;
-      z-index: 8;
-    }
-
-    .badge-avatar {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      background: #ff769c;
-      border: 3px solid #ffffff;
-      box-shadow: 0 6px 16px rgba(230, 60, 110, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 34px;
-      margin: 0 auto;
-      transition: transform 0.2s;
-    }
-
-    .badge-avatar:active {
-      transform: scale(0.95);
-    }
-
-    .badge-label {
-      font-size: 11px;
-      font-weight: 800;
-      color: #7a2745;
-      margin-top: 4px;
-      display: block;
-    }
-
-    .heartfelt-msg {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #553440;
-      padding: 0 14px;
-      margin-top: 6px;
-    }
-
-    .signature {
-      font-size: 12px;
-      font-weight: 700;
-      color: #924d67;
-      margin: 8px 0 14px 0;
-    }
-
-    .action-btn {
-      background: linear-gradient(135deg, #f05282, #d12758);
-      color: #ffffff;
-      border: none;
-      padding: 12px 22px;
-      border-radius: 50px;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 8px 18px rgba(220, 40, 90, 0.3);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin: 4px;
-      user-select: none;
-    }
-
-    .action-btn:active {
-      transform: scale(0.95);
-    }
-
-    .letter-btn {
-      width: 90%;
-      max-width: 320px;
-      background: linear-gradient(135deg, #c73663, #a11f48);
-      padding: 13px 20px;
-    }
-
-    .puzzle-btn {
-      background: linear-gradient(135deg, #8e44ad, #d12758);
-    }
-
-    .bottom-stickers-tray {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin-top: 22px;
-      padding-top: 16px;
-      border-top: 1px dashed rgba(220, 90, 130, 0.25);
-    }
-
-    .sticker-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .sticker-item:active {
-      transform: scale(0.9);
-    }
-
-    .sticker-emoji {
-      font-size: 34px;
-      line-height: 1;
-    }
-
-    .sticker-item span {
-      font-size: 12px;
-      font-weight: 800;
-      color: #7e3953;
-    }
-
-    /* Modal */
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(6px);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
-    }
-
-    .modal-box {
-      background: #ffffff;
-      border-radius: 28px;
-      width: 100%;
-      max-width: 420px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 24px 20px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 14px;
-      right: 18px;
-      font-size: 26px;
-      color: #aaa;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .modal-content-area {
-      font-size: 14px;
-      color: #4b2331;
-      line-height: 1.6;
-      text-align: left;
-      margin-top: 12px;
-    }
-
-    .modal-content-area ul {
-      margin: 10px 0 10px 20px;
-    }
-
-    /* Pure JS Puzzle Styles */
-    .puzzle-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 76px);
-      grid-gap: 8px;
-      justify-content: center;
-      margin: 18px auto;
-    }
-
-    .puzzle-tile {
-      width: 76px;
-      height: 76px;
-      background: linear-gradient(135deg, #ffd3e2, #ffafcc);
-      border: 2px solid #ff7597;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: 800;
-      color: #b01a47;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .puzzle-tile.empty {
-      background: #f7f1f4;
-      border: 2px dashed #e2ccd6;
-    }
-
-    /* Falling Hearts Confetti Animation */
-    .falling-confetti {
-      position: fixed;
-      pointer-events: none;
-      z-index: 2000;
-      animation: dropDown 1.8s ease-out forwards;
-    }
-
-    @keyframes dropDown {
-      0% { transform: translateY(-20px) scale(0.8) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) scale(1.2) rotate(360deg); opacity: 0; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="bokeh" style="width: 70px; height: 70px; top: 10%; left: 8%;"></div>
-  <div class="bokeh" style="width: 110px; height: 110px; bottom: 15%; right: 5%;"></div>
-  <div class="bokeh" style="width: 50px; height: 50px; top: 60%; left: 12%;"></div>
-
-  <main class="main-canvas">
-
-    <div class="deco-sticker" style="left: 14px; top: 12px;">🥰</div>
-    <div class="deco-sticker" style="right: 14px; top: 12px;">💘</div>
-
-    <h1>Our Adorable Journey & A<br/>Surprise for Shubhi Mishra!</h1>
-    <span class="sub-tag">(Tap card to see 60+ cute reasons why I love you)</span>
-
-    <div class="audio-player-bar">
-      <button class="play-btn" id="musicToggleBtn" onclick="toggleAudio()">▶</button>
-      <div class="track-info">
-        <div class="track-title" id="songName">Ra.One - Dildara (Stand By Me)</div>
-        <div class="track-sub" id="musicStatus">Tap Play Button</div>
-      </div>
-      <span style="font-size: 20px;">🎵</span>
-      <audio id="bgSong" loop preload="auto">
-        <source src="song.mp3" type="audio/mpeg">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_db6591201e.mp3?filename=romantic-love-story-112196.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-
-    <div class="speech-bubble">Tap card for next note! 💭</div>
-
-    <div>
-      <span class="counter-tag" id="reasonCounter">Reason #1 of 60</span>
-    </div>
-
-    <div class="polaroid-stack-zone" id="polaroidZone" onclick="nextGreeting()">
-      <div class="polaroid" id="activePolaroid" style="transform: rotate(-1deg); z-index: 3;">
-        <img id="polaroidImg" src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600&auto=format&fit=crop&q=80" alt="Romantic Memory" />
-        <div class="polaroid-caption" id="polaroidText">
-          "To my dearest Shubhi Mishra! My love, my partner, and the cuteness queen. ❤️"
-        </div>
-      </div>
-    </div>
-
-    <div class="side-action-badge" onclick="triggerHugSurprise()">
-      <div class="badge-avatar">🤗</div>
-      <span class="badge-label">Hug Surprise!</span>
-    </div>
-
-    <p class="heartfelt-msg">
-      You bring so much warmth, chaos, and sweetness into my life. Every single moment with you is precious!
-    </p>
-
-    <div class="signature">
-      With love and best wishes,<br/>Your Special Someone ❤️
-    </div>
-
-    <div>
-      <button class="action-btn" onclick="nextGreeting()">Next Sweet Note 🐱</button>
-      <button class="action-btn puzzle-btn" onclick="openPuzzleModal()">Love Puzzle 🧩</button>
-    </div>
-
-    <div>
-      <button class="action-btn letter-btn" onclick="openLetterModal()">Read Your Heartfelt Love Letter... 💌</button>
-    </div>
-
-    <div class="bottom-stickers-tray">
-      <div class="sticker-item" onclick="triggerProposal()">
-        <span class="sticker-emoji">💍</span>
-        <span>Proposal</span>
-      </div>
-
-      <div class="sticker-item" onclick="triggerSorry()">
-        <span class="sticker-emoji">🥺</span>
-        <span>Say Sorry</span>
-      </div>
-
-      <div class="sticker-item" onclick="triggerConfess()">
-        <span class="sticker-emoji">💖</span>
-        <span>Confess</span>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- Modal -->
-  <div class="modal-backdrop" id="customModal" onclick="closeModal(event)">
-    <div class="modal-box" onclick="event.stopPropagation()">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <div id="modalEmoji" style="font-size: 55px; margin-bottom: 8px;">💌</div>
-      <h2 id="modalTitle" style="font-size: 21px; color: #d12758; margin-bottom: 8px;"></h2>
-      <div id="modalDesc" class="modal-content-area"></div>
-    </div>
-  </div>
-
-  <!-- Puzzle Modal -->
-  <div class="modal-backdrop" id="puzzleModal" onclick="closePuzzle(event)">
-    <div class="modal-box" onclick="event.stopPropagation()">
-      <span class="close-modal" onclick="closePuzzle()">&times;</span>
-      <h2 style="font-size: 22px; color: #d12758; margin-bottom: 4px;">Solve To Unlock My Heart 🧩</h2>
-      <p style="font-size: 13px; color: #777;">Order tiles from 1 to 8 to reveal the special surprise!</p>
-      
-      <div class="puzzle-grid" id="puzzleBoard"></div>
-
-      <button class="action-btn" onclick="shufflePuzzle()">Shuffle Again 🔄</button>
-    </div>
-  </div>
+  <title>AJ Biryani Palace | Authentic Andhra Spiced Biryani in Varadaiahpalem</title>
+  <meta name="description" content="Craving authentic, aromatic Andhra Biryani in Varadaiahpalem? Visit AJ Biryani Palace on Srikalahasti–Tada Road. Freshly cooked, rich spices, unbeatable taste." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Google Fonts: Inter & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
-    // Built-in Confetti Effect
-    function shootConfetti() {
-      const symbols = ['❤️', '💖', '🌸', '✨', '💕', '🎉'];
-      for (let i = 0; i < 24; i++) {
-        const span = document.createElement('span');
-        span.className = 'falling-confetti';
-        span.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-        span.style.left = Math.random() * 95 + 'vw';
-        span.style.top = (Math.random() * 20) + 'vh';
-        span.style.fontSize = (Math.random() * 18 + 16) + 'px';
-        span.style.animationDuration = (Math.random() * 1 + 1.2) + 's';
-        document.body.appendChild(span);
-        setTimeout(() => span.remove(), 2000);
-      }
-    }
-
-    const greetings = [
-      "To my dearest Shubhi Mishra! My love, my partner, and the cuteness queen. ❤️",
-      "I love you more than sleep… and honestly, that is a massive emotional investment! 😴",
-      "The sweetest smile in this whole universe! Soo cute, pure trouble, and all mine! ✨",
-      "Are you a magician? Because whenever I look at you, everyone else disappears. 🪄",
-      "Every single day feels brighter with you, Shubhi! My lifetime partner. 💕",
-      "You are my favorite notification of the day, no matter how busy life gets! 📱",
-      "You stole my heart fair and square, but could you stop being so cute? It's distracting! 😍",
-      "I promise to always give you the bigger slice of pizza and the last bite of dessert. 🍕",
-      "If you were a vegetable, you'd be a cute-cumber! 🥒✨",
-      "My heart beats in 4G when you text, and 5G when I see you smile! 💓",
-      "You're the only person I’d share my French fries with (and that's pure love). 🍟",
-      "I love you even when you're super hangry and demanding snacks! 🍫",
-      "Life without you would be like a pencil without lead: completely pointless. ✏️",
-      "Shubhi, you are my favorite human pillow and my forever home. 🏡💖",
-      "You're the marshmallows in my hot chocolate and the sprinkles on my ice cream! 🍨",
-      "I love you from the bottom of my heart to the tips of my toes! 👣❤️",
-      "You make my heart do little happy dances every time your name pops up! 💃",
-      "Out of 8 billion people, my heart picked you with zero hesitation. 🌍✨",
-      "You're cute when you're happy, cute when you're mad, and cute when you're sleepy! 🥱",
-      "I love you more than all the stars in the night sky combined. 🌌",
-      "You’re my sunshine on rainy days and my warm blanket on cold nights. ☀️🧣",
-      "Every love song suddenly makes complete sense whenever I think of you. 🎶",
-      "I promise to laugh at all your jokes, even the ones that make zero sense! 😂",
-      "Shubhi, you’re the sweetest chapter in my entire life story. 📖❤️",
-      "You hold my hand for a little while, but you hold my heart forever. 🤝",
-      "If loving you was a job, I’d gladly work 24/7 without taking a weekend off. 💼",
-      "You're not just my partner; you're my best friend and my favorite chaos. 🌪️💕",
-      "Your laugh is literally my favorite sound in the entire galaxy. 🎵✨",
-      "I fall in love with you a little bit more every single day. 📈❤️",
-      "You make ordinary days feel like fairy tales with that cute smile. 🧚‍♀️",
-      "Thank you for being the sweetest, most caring girl in existence. 🌸",
-      "I love your silly poses, your dramatic reactions, and your golden heart. 📸",
-      "You are the peace in my noisy world, Shubhi Mishra. 🕊️",
-      "Forever isn't even long enough to spend with someone as cute as you. ⏳",
-      "I love you past the moon, beyond Jupiter, and straight into infinity! 🚀💫",
-      "My life became 1000x more colorful the moment you walked into it. 🎨",
-      "You're the cheese to my macaroni and the sugar in my tea! 🫖🧀",
-      "I promise to always hold your bags and listen to all your gossip with full focus! 🛍️",
-      "No refunds, no exchanges: you're stuck with me forever, Shubhi! 😜",
-      "You have the kindest eyes and the warmest heart I've ever known. 👀❤️",
-      "Just thinking of you gives me butterflies all over again! 🦋",
-      "You are my favorite thought before falling asleep and my first when waking up. 🌅",
-      "Thank you for understanding all my weirdness and loving me anyway! 🛸",
-      "I love you more today than yesterday, but not as much as tomorrow! 📅",
-      "You're the sweetest troublemaker I ever met, and I love you for it! 😈❤️",
-      "My favorite place in the whole world will always be right next to you. 📍",
-      "Even your grumpy face is 10/10 illegally adorable! 😤💕",
-      "You make my world a softer, kinder, and much happier place. 🌸",
-      "I’d choose you in a hundred lifetimes, in any universe, without a doubt. 🌌",
-      "You're my personal mood-lifter and my sweetest addiction! 🍭",
-      "Thank you for being the best girlfriend cum lifetime partner ever! 🏆",
-      "I love the way your nose crinkles when you laugh really hard. 👃✨",
-      "You are my greatest adventure and my safest haven. 🗺️",
-      "Every single moment without you just feels like counting down till I see you. ⏰",
-      "You make my heart smile in ways nobody else ever could. 😊",
-      "I love you more than chai on a rainy monsoon evening! ☕🌧️",
-      "I promise to always keep you safe, happy, well-fed, and smiling! 🛡️❤️",
-      "You are pure perfection in my eyes, my little cuteness queen Shubhi! 👑",
-      "No matter where life takes us, my hands will always be holding yours. 🤝💖",
-      "I love you, Shubhi Mishra. Today, tomorrow, and for all eternity! ♾️❤️"
-    ];
-
-    const photos = [
-      "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=600&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&auto=format&fit=crop&q=80"
-    ];
-
-    let currentGreetingIdx = 0;
-
-    function nextGreeting() {
-      const card = document.getElementById('activePolaroid');
-      card.style.transform = 'translateY(-60px) rotate(-10deg) scale(0.92)';
-      card.style.opacity = '0.4';
-
-      setTimeout(() => {
-        currentGreetingIdx = (currentGreetingIdx + 1) % greetings.length;
-        document.getElementById('polaroidText').innerText = `"${greetings[currentGreetingIdx]}"`;
-        document.getElementById('polaroidImg').src = photos[currentGreetingIdx % photos.length];
-        document.getElementById('reasonCounter').innerText = `Reason #${currentGreetingIdx + 1} of ${greetings.length}`;
-
-        card.style.transform = (currentGreetingIdx % 2 === 0) ? 'rotate(2deg) scale(1)' : 'rotate(-2deg) scale(1)';
-        card.style.opacity = '1';
-        shootConfetti();
-      }, 200);
-    }
-
-    // Audio Play/Pause
-    const audio = document.getElementById('bgSong');
-    const playBtn = document.getElementById('musicToggleBtn');
-    let isPlaying = false;
-
-    function toggleAudio() {
-      if (!isPlaying) {
-        audio.play().then(() => {
-          isPlaying = true;
-          playBtn.innerText = '❚❚';
-          document.getElementById('musicStatus').innerText = 'Playing Romantic Track 🎵';
-        }).catch(err => {
-          console.log("Audio waiting for explicit user touch:", err);
-          document.getElementById('musicStatus').innerText = 'Tap again to play';
-        });
-      } else {
-        audio.pause();
-        isPlaying = false;
-        playBtn.innerText = '▶';
-        document.getElementById('musicStatus').innerText = 'Paused';
-      }
-    }
-
-    // Modal Display Functions
-    function showModal(title, htmlContent, emoji) {
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalDesc').innerHTML = htmlContent;
-      document.getElementById('modalEmoji').innerText = emoji;
-      document.getElementById('customModal').style.display = 'flex';
-      shootConfetti();
-    }
-
-    function closeModal() {
-      document.getElementById('customModal').style.display = 'none';
-    }
-
-    function openLetterModal() {
-      const letterHtml = `
-        <p><strong>Dearest Shubhi Mishra,</strong></p><br/>
-        <p>If being ridiculously cute was an actual crime, you’d already be serving a lifetime sentence with zero chance of parole. Luckily for you, I happen to be your biggest fan, your emergency snack provider, and your permanent partner-in-crime for life.</p><br/>
-        <p>Out of roughly eight billion humans on this floating rock, my heart somehow locked onto the one girl whose smile instantly reboots my entire day. I don’t just like you—I love you to the moon, past all the stars, through all the network lag, and straight into infinity.</p><br/>
-        <p><strong>I solemnly promise to always:</strong></p>
-        <ul>
-          <li>Agree with your movie and food choices (eventually).</li>
-          <li>Give you the bigger half of the dessert, even when I'm crying inside.</li>
-          <li>Listen to all your random stories, gossips, and daily adventures with complete seriousness.</li>
-          <li>Love you endlessly—even when you’re being stubborn, hangry, or impossible to handle!</li>
-        </ul>
-        <p>You aren’t just my girlfriend; you are my home, my peace, and my future life partner. Thank you for filling my days with warmth, endless laughter, and unmatched cuteness.</p><br/>
-        <p style="text-align: right; font-family: 'Caveat', cursive; font-size: 20px; color: #d12758;">
-          Forever yours,<br/>Your permanent headache & lifetime lover ❤️✨
-        </p>
-      `;
-      showModal("To My Shubhi Mishra 💌", letterHtml, "💌");
-    }
-
-    function triggerProposal() {
-      const html = `
-        <p><strong>Fair warning, Shubhi:</strong></p><br/>
-        <p>If you agree to stay with me forever and ever, there are strictly no returns, no exchanges, and absolutely no refunds allowed! 😜</p><br/>
-        <p>Will you officially agree to be my cuteness queen and life partner for eternity? 💍✨</p>
-      `;
-      showModal("Lifetime Contract 💍", html, "💍");
-    }
-
-    function triggerSorry() {
-      const html = `
-        <p>I’m deeply sorry for whatever silly thing I did, whatever I didn’t do, and whatever you dreamt I did last night while sleeping! 🥺👉👈</p><br/>
-        <p>Please forgive your favorite boy? I bring snacks and infinite hugs! 🍫🌸</p>
-      `;
-      showModal("A Very Sincere Apology 🥺", html, "🥺");
-    }
-
-    function triggerConfess() {
-      const html = `
-        <p>You stole my heart fair and square, but could you at least stop being so illegally adorable every single hour of the day?</p><br/>
-        <p>It’s genuinely distracting! I love you so much, Shubhi Mishra! 🌸💖</p>
-      `;
-      showModal("Official Confession 💕", html, "💖");
-    }
-
-    function triggerHugSurprise() {
-      const html = `
-        <p>Sending you the biggest, warmest, and squishiest cuddle in the entire universe!</p><br/>
-        <p>No escape allowed! You have been captured by love! 🫂💖</p>
-      `;
-      showModal("Warmest Hug for Shubhi! 🫂", html, "🤗");
-    }
-
-    // 8-Puzzle Game Logic
-    let board = [1, 2, 3, 4, 5, 6, 7, 8, ""];
-    const winningBoard = [1, 2, 3, 4, 5, 6, 7, 8, ""];
-
-    function openPuzzleModal() {
-      document.getElementById('puzzleModal').style.display = 'flex';
-      shufflePuzzle();
-    }
-
-    function closePuzzle() {
-      document.getElementById('puzzleModal').style.display = 'none';
-    }
-
-    function renderPuzzle() {
-      const grid = document.getElementById('puzzleBoard');
-      grid.innerHTML = "";
-      board.forEach((val, idx) => {
-        const tile = document.createElement('div');
-        tile.className = 'puzzle-tile' + (val === "" ? " empty" : "");
-        tile.innerText = val;
-        tile.onclick = () => moveTile(idx);
-        grid.appendChild(tile);
-      });
-    }
-
-    function moveTile(idx) {
-      const emptyIdx = board.indexOf("");
-      const validMoves = [
-        emptyIdx - 1 >= 0 && Math.floor((emptyIdx - 1) / 3) === Math.floor(emptyIdx / 3) ? emptyIdx - 1 : null,
-        emptyIdx + 1 < 9 && Math.floor((emptyIdx + 1) / 3) === Math.floor(emptyIdx / 3) ? emptyIdx + 1 : null,
-        emptyIdx - 3 >= 0 ? emptyIdx - 3 : null,
-        emptyIdx + 3 < 9 ? emptyIdx + 3 : null
-      ];
-
-      if (validMoves.includes(idx)) {
-        board[emptyIdx] = board[idx];
-        board[idx] = "";
-        renderPuzzle();
-
-        if (checkWin()) {
-          setTimeout(() => {
-            shootConfetti();
-            alert("🎉 You solved it, Shubhi! My heart is completely unlocked and belongs only to you! ❤️");
-          }, 150);
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Cinzel', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              gold: '#D97706',
+              darkRed: '#7F1D1D',
+              deepBlack: '#0D0D0E',
+              warmCard: '#17171A'
+            }
+          }
         }
       }
     }
-
-    function checkWin() {
-      return board.every((val, i) => val === winningBoard[i]);
-    }
-
-    function shufflePuzzle() {
-      board = [1, 2, 3, 4, 5, "", 7, 8, 6];
-      renderPuzzle();
-    }
   </script>
-</body>
-</html>
+</head>
+<body class="bg-brand-deepBlack text-stone-200 font-sans selection:bg-amber-600 selection:text-white pb-20 md:pb-0">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-stone-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center space-x-2">
+        <span class="text-amber-500 text-2xl font-bold tracking-wider font-heading">AJ BIRYANI</span>
+        <span class="text-xs uppercase bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded font-semibold tracking-wider">Palace</span>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+        <a href="#about" class="text-stone-300 hover:text-amber-400 transition">About</a>
+        <a href="#menu" class="text-stone-300 hover:text-amber-400 transition">Menu Highlights</a>
+        <a href="#specialty" class="text-stone-300 hover:text-amber-400 transition">Why Us</a>
+        <a href="#location" class="text-stone-300 hover:text-amber-400 transition">Locate Us</a>
+      </nav>
+
+      <div class="hidden md:flex items-center space-x-3">
+        <a href="tel:+919876543210" class="inline-flex items-center gap-2 bg-stone-800 hover:bg-stone-700 text-stone-100 px-4 py-2 rounded-lg text-sm font-medium border border-stone-700 transition">
+          <i class="fa-solid fa-phone text-amber-400"></i> Call Us
+        </a>
+        <a href="https://maps.google.com/?q=AJ+Biryani+Varadaiahpalem" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-500 text-black px-4 py-2 rounded-lg text-sm font-bold shadow-lg shadow-amber-600/30 transition">
+          <i class="fa-solid fa-location-dot"></i> Directions
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=2000&q=80" 
+        alt="Hot Dum Biryani" 
+        class="w-full h-full object-cover object-center filter brightness-[0.25] scale-105 transform hover:scale-100 transition duration-1000"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-deepBlack via-transparent to-brand-deepBlack/80"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs md:text-sm font-semibold tracking-wide uppercase mb-6">
+        <i class="fa-solid fa-fire text-amber-500"></i> Pure Andhra Dum Biryani & Starters
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white font-heading tracking-tight leading-tight mb-6">
+        The Authentic Aroma of <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-600">Varadaiahpalem</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-stone-300 mb-10 leading-relaxed font-light">
+        Slow-cooked tender meats, long-grain basmati, and traditional ground spices. Taste perfection right here on Srikalahasti–Tada Road.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://maps.google.com/?q=AJ+Biryani+Varadaiahpalem" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-amber-500 hover:bg-amber-400 text-black px-8 py-4 rounded-xl font-bold text-base shadow-xl shadow-amber-500/20 transform hover:-translate-y-0.5 transition">
+          <i class="fa-solid fa-diamond-turn-right text-lg"></i>
+          Get Directions to Shop
+        </a>
+        <a href="#menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-stone-900/80 hover:bg-stone-800 text-stone-200 border border-stone-700 px-8 py-4 rounded-xl font-medium text-base backdrop-blur-sm transition">
+          <i class="fa-solid fa-utensils text-amber-400"></i>
+          Explore Our Menu
+        </a>
+      </div>
+
+      <!-- Quick Badges -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-stone-800 text-stone-300 text-xs sm:text-sm font-medium">
+        <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-clock text-amber-400"></i> 10:00 AM – 10:00 PM</div>
+        <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-bowl-rice text-amber-400"></i> Fresh Dum Everyday</div>
+        <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-bag-shopping text-amber-400"></i> Takeaway & Dine-in</div>
+        <div class="flex items-center justify-center gap-2"><i class="fa-solid fa-motorcycle text-amber-400"></i> Quick Local Parcels</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POPULAR MENU SECTION -->
+  <section id="menu" class="py-20 bg-stone-950 border-t border-stone-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-xs uppercase font-bold tracking-widest text-amber-500 mb-2">Crowd Favorites</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-white font-heading">AJ Signature Dishes</p>
+        <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Dish 1 -->
+        <div class="bg-brand-warmCard rounded-2xl overflow-hidden border border-stone-800/80 hover:border-amber-500/50 transition duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="relative h-56 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=800&q=80" 
+                alt="Chicken Dum Biryani" 
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+              <span class="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Chef's Special</span>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Special Chicken Dum Biryani</h3>
+                <span class="text-amber-400 font-bold text-lg font-sans">₹160+</span>
+              </div>
+              <p class="text-stone-400 text-sm leading-relaxed mb-4">
+                Classic long-grain basmati cooked with tender chicken pieces, layered with fried onions, mint, and rich Andhra spices. Served with Mirchi ka Salan & Raitha.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-0">
+            <a href="tel:+919876543210" class="w-full inline-flex items-center justify-center gap-2 py-2.5 bg-stone-800 hover:bg-amber-600 hover:text-black text-stone-200 text-sm font-semibold rounded-lg transition duration-200">
+              <i class="fa-solid fa-phone"></i> Order via Phone
+            </a>
+          </div>
+        </div>
+
+        <!-- Dish 2 -->
+        <div class="bg-brand-warmCard rounded-2xl overflow-hidden border border-stone-800/80 hover:border-amber-500/50 transition duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="relative h-56 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80" 
+                alt="Chicken Fry Piece Biryani" 
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+              <span class="absolute top-3 right-3 bg-amber-500 text-black text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Top Seller</span>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Chicken Fry Piece Biryani</h3>
+                <span class="text-amber-400 font-bold text-lg font-sans">₹180+</span>
+              </div>
+              <p class="text-stone-400 text-sm leading-relaxed mb-4">
+                Crispy spiced chicken fry tossed in roasted curry leaves and green chillies, crowned over aromatic seasoned biryani rice.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-0">
+            <a href="tel:+919876543210" class="w-full inline-flex items-center justify-center gap-2 py-2.5 bg-stone-800 hover:bg-amber-600 hover:text-black text-stone-200 text-sm font-semibold rounded-lg transition duration-200">
+              <i class="fa-solid fa-phone"></i> Order via Phone
+            </a>
+          </div>
+        </div>
+
+        <!-- Dish 3 -->
+        <div class="bg-brand-warmCard rounded-2xl overflow-hidden border border-stone-800/80 hover:border-amber-500/50 transition duration-300 group flex flex-col justify-between">
+          <div>
+            <div class="relative h-56 overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" 
+                alt="Mutton Biryani / Starters" 
+                class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+              <span class="absolute top-3 right-3 bg-stone-700 text-white text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Rich & Juicy</span>
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Tender Mutton Biryani</h3>
+                <span class="text-amber-400 font-bold text-lg font-sans">₹260+</span>
+              </div>
+              <p class="text-stone-400 text-sm leading-relaxed mb-4">
+                Succulent baby goat meat marinated overnight in fresh curd, stone-ground spices, and steamed slowly to perfection.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-0">
+            <a href="tel:+919876543210" class="w-full inline-flex items-center justify-center gap-2 py-2.5 bg-stone-800 hover:bg-amber-600 hover:text-black text-stone-200 text-sm font-semibold rounded-lg transition duration-200">
+              <i class="fa-solid fa-phone"></i> Order via Phone
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-stone-400 text-sm">
+          * Fast takeaway counter available. Bulk party orders and family packs can be reserved 1 hour in advance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="specialty" class="py-20 bg-brand-deepBlack">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="p-8 rounded-2xl bg-stone-900/60 border border-stone-800 text-center">
+          <div class="w-14 h-14 mx-auto mb-6 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-pepper-hot"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Fresh Native Spices</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">
+            No artificial food colors or heavy preservatives. Made daily using hand-selected native Andhra masalas.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-stone-900/60 border border-stone-800 text-center">
+          <div class="w-14 h-14 mx-auto mb-6 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-drumstick-bite"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">100% Fresh & Tender Meat</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">
+            Sourced fresh every morning from trusted local vendors to ensure soft, juicy meat in every bite.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-stone-900/60 border border-stone-800 text-center">
+          <div class="w-14 h-14 mx-auto mb-6 bg-amber-500/10 text-amber-500 rounded-xl flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-motorcycle"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Hot Parcel & Dine-In</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">
+            Conveniently situated right on the main highway corridor for quick lunch stops, dinner pickups, and takeaways.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION & VISIT US SECTION -->
+  <section id="location" class="py-20 bg-stone-950 border-t border-stone-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left: Shop Details -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-500/10 text-amber-400 text-xs font-semibold tracking-wider uppercase">
+            <i class="fa-solid fa-map-pin"></i> Easy to Reach
+          </div>
+          
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading leading-tight">
+            Stop By for Lunch or Grab Your Dinner
+          </h2>
+
+          <p class="text-stone-400 text-base leading-relaxed">
+            Conveniently located on the main road connecting Srikalahasti and Tada, AJ Biryani is the prime spot for travelers, locals, and college students looking for rich, authentic taste.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-stone-800 flex items-center justify-center text-amber-400 shrink-0 mt-1">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Address</h4>
+                <p class="text-stone-400 text-sm mt-0.5">SH-4437, Srikalahasti – Tada Road, Varadaiahpalem, Andhra Pradesh – 517541</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-stone-800 flex items-center justify-center text-amber-400 shrink-0 mt-1">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Opening Hours</h4>
+                <p class="text-stone-400 text-sm mt-0.5">Monday – Sunday: 10:00 AM – 10:00 PM</p>
+                <p class="text-xs text-amber-500 mt-0.5">Fresh Biryani Dum ready around 12:30 PM & 7:00 PM</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-stone-800 flex items-center justify-center text-amber-400 shrink-0 mt-1">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Phone / Order Support</h4>
+                <p class="text-stone-400 text-sm mt-0.5">+91 98765 43210 (Replace with your shop number)</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="pt-4 flex flex-wrap gap-4">
+            <a href="https://maps.google.com/?q=Varadaiahpalem" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-black px-6 py-3.5 rounded-xl font-bold transition shadow-lg shadow-amber-500/20">
+              <i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps
+            </a>
+            <a href="tel:+919876543210" class="inline-flex items-center gap-2 bg-stone-900 border border-stone-700 hover:border-stone-500 text-white px-6 py-3.5 rounded-xl font-semibold transition">
+              <i class="fa-solid fa-phone"></i> Direct Call
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Map Display -->
+        <div class="lg:col-span-6">
+          <div class="relative rounded-2xl overflow-hidden border border-stone-800 bg-stone-900 shadow-2xl h-80 sm:h-96">
+            <!-- Embedded Google Map -->
+            <iframe 
+              title="AJ Biryani Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15525.074092248566!2d79.91924513101188!3d13.60805342416805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d80a1c6a2e46b%3A0xb614f1450aa6ec8b!2sVaradaiahpalem%2C%20Andhra%20Pradesh%20517541!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              class="w-full h-full border-0 filter grayscale-[20%] contrast-[1.1]" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black border-t border-stone-900 py-10">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h3 class="text-xl font-bold font-heading text-amber-500 tracking-wider">AJ BIRYANI PALACE</h3>
+      <p class="text-stone-500 text-xs mt-2">Varadaiahpalem, Tirupati District, Andhra Pradesh</p>
+      <div class="mt-6 flex justify-center space-x-6 text-stone-400 text-sm">
+        <a href="#about" class="hover:text-amber-400">Home</a>
+        <a href="#menu" class="hover:text-amber-400">Menu</a>
+        <a href="#location" class="hover:text-amber-400">Location</a>
+      </div>
+      <p class="text-stone-600 text-xs mt-8">© 2026 AJ Biryani Palace. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CALL & MAP BAR (Crucial for driving store visits) -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 bg-stone-900/95 backdrop-blur-md border-t border-stone-800 p-3 flex gap-3 md:hidden">
+    <a href="tel:+919876543210" class="flex-1 bg-stone-800 active:bg-stone-700 text-amber-400 text-center py-3 rounde
