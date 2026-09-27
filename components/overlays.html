@@ -1,0 +1,89 @@
+<!-- MOBILE FIXED BOTTOM ACTION BAR -->
+<aside aria-label="Mobile quick actions" class="fixed bottom-0 left-0 right-0 z-40 bg-brand-surface/95 backdrop-blur-md border-t border-brand-border p-3 flex gap-2 md:hidden">
+  <a href="tel:+919876543210" class="flex-1 bg-stone-800 text-stone-200 text-center py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 border border-stone-700">
+    <i class="fa-solid fa-phone text-amber-400"></i> Call
+  </a>
+  <a href="https://maps.google.com/?q=Varadaiahpalem" target="_blank" rel="noopener noreferrer" class="flex-1 bg-brand-surfaceLight text-amber-400 text-center py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 border border-brand-border">
+    <i class="fa-solid fa-location-arrow"></i> Map
+  </a>
+  <button id="cart-open-btn-mobile" class="flex-1 bg-amber-500 text-black text-center py-3 rounded-xl font-black text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-amber-500/20">
+    <i class="fa-solid fa-bag-shopping"></i> Cart (<span id="cart-counter-mobile">0</span>)
+  </button>
+</aside>
+
+<!-- SLIDE-IN LIVE CART & CHECKOUT DRAWER -->
+<div id="cart-drawer" class="fixed inset-y-0 right-0 z-50 w-full sm:w-96 bg-brand-surface border-l border-brand-border p-6 flex flex-col justify-between transform transition duration-300 ease-in-out translate-x-full shadow-2xl">
+  <div>
+    <div class="flex items-center justify-between pb-4 border-b border-brand-border">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-bag-shopping text-amber-400"></i>
+        <h3 class="font-bold text-white text-base">Your Takeaway Order</h3>
+      </div>
+      <button id="cart-close-btn" class="text-stone-400 hover:text-white p-2">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+
+    <div id="cart-items" class="py-4 space-y-3 max-h-[50vh] overflow-y-auto">
+      <p class="text-stone-400 text-xs text-center py-8">Your cart is currently empty. Click '+ Add' on any dish to begin!</p>
+    </div>
+  </div>
+
+  <div class="pt-4 border-t border-brand-border space-y-3">
+    <div class="flex justify-between text-xs text-stone-300">
+      <span>Subtotal</span>
+      <span id="cart-subtotal" class="font-bold text-white font-mono">₹0</span>
+    </div>
+    <div class="flex justify-between text-xs text-stone-300">
+      <span>Foil Packaging / Salan &amp; Raitha</span>
+      <span class="text-emerald-400 font-bold uppercase text-[10px]">FREE</span>
+    </div>
+    <div class="flex justify-between text-sm text-white font-bold pt-2 border-t border-brand-border">
+      <span>Grand Total</span>
+      <span id="cart-total" class="font-black text-amber-400 font-mono text-base">₹0</span>
+    </div>
+
+    <button id="checkout-wa-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition">
+      <i class="fa-brands fa-whatsapp text-lg"></i> Send Order to WhatsApp
+    </button>
+    <p class="text-[10px] text-stone-500 text-center">Payment accepted via UPI, PhonePe, Google Pay, or Cash at pickup counter.</p>
+  </div>
+</div>
+
+<!-- WRITE A REVIEW MODAL -->
+<div id="review-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+  <div class="bg-brand-surface border border-brand-border rounded-3xl p-6 sm:p-8 max-w-md w-full relative">
+    <button id="close-review-modal-btn" class="absolute top-4 right-4 text-stone-400 hover:text-white">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+
+    <span class="text-amber-500 text-xs font-bold uppercase tracking-wider">Patron Feedback</span>
+    <h3 class="text-xl font-bold text-white font-heading mt-1">Leave a Review</h3>
+    <p class="text-stone-400 text-xs mt-1">How was your Biryani dining or parcel experience?</p>
+
+    <form id="review-form" class="mt-5 space-y-4">
+      <div>
+        <label class="block text-xs font-semibold text-stone-300 mb-1">Your Full Name</label>
+        <input type="text" id="rev-name" required placeholder="e.g. Suresh Kumar" class="w-full bg-brand-surfaceLight border border-brand-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-stone-300 mb-1">Your Rating</label>
+        <select id="rev-rating" class="w-full bg-brand-surfaceLight border border-brand-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500">
+          <option value="5">★★★★★ (5/5 Excellent)</option>
+          <option value="4">★★★★☆ (4/5 Very Good)</option>
+          <option value="3">★★★☆☆ (3/5 Average)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-stone-300 mb-1">Comments</label>
+        <textarea id="rev-comment" required rows="3" placeholder="Share your experience about the spices, taste, or service..." class="w-full bg-brand-surfaceLight border border-brand-border rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-amber-500"></textarea>
+      </div>
+
+      <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition">
+        Post Review
+      </button>
+    </form>
+  </div>
+</div>
