@@ -1,0 +1,43 @@
+/* Base scrollbar styles */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262933;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F59E0B;
+}
+
+/* Slide drawer helpers for cart */
+.cart-drawer-open {
+  transform: translateX(0%);
+}
+
+.cart-drawer-closed {
+  transform: translateX(100%);
+}
+
+/* Smooth input and button focus interaction */
+input, select, textarea, button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #F59E0B;
+}
+
+/* Card hover smooth transition */
+.menu-dish-card, .spice-card {
+  will-change: transform, border-color;
+  transition: all 0.25s ease-out;
+}
