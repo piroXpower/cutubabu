@@ -1,0 +1,58 @@
+<section id="party" class="py-20 bg-brand-darkBg">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-xl mx-auto mb-10">
+      <span class="text-amber-500 text-xs font-bold tracking-widest uppercase">Office Lunches & Family Functions</span>
+      <h2 class="text-2xl sm:text-3xl font-black text-white font-heading mt-1" data-en="Instant Party Order Calculator" data-te="పార్టీ బిర్యానీ కాలిక్యులేటర్">
+        Instant Party Order Calculator
+      </h2>
+      <p class="text-stone-400 text-xs sm:text-sm mt-1">Estimate food required for birthdays, team celebrations, or household gatherings.</p>
+    </div>
+
+    <div class="bg-brand-surface p-6 sm:p-8 rounded-3xl border border-brand-border">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-5">
+          <div>
+            <label class="block text-xs font-bold text-stone-300 uppercase mb-2">Number of People:</label>
+            <div class="flex items-center gap-4">
+              <input type="range" id="partyPeople" min="3" max="80" value="12" class="w-full h-2 bg-stone-700 rounded-lg appearance-none cursor-pointer accent-amber-500" />
+              <span id="partyPeopleVal" class="text-2xl font-black text-amber-400 w-12 text-right">12</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-stone-300 uppercase mb-2">Select Biryani Variety:</label>
+            <select id="partyDish" class="w-full bg-brand-surfaceLight border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500">
+              <option value="160">Special Chicken Dum Biryani (₹160)</option>
+              <option value="180">Chicken Fry Piece Biryani (₹180)</option>
+              <option value="260">Tender Mutton Dum Biryani (₹260)</option>
+              <option value="140">Shahi Paneer Veg Biryani (₹140)</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <input type="checkbox" id="partyStarter" class="w-4 h-4 rounded text-amber-500 focus:ring-0 cursor-pointer bg-stone-800">
+            <label for="partyStarter" class="text-xs text-stone-300 cursor-pointer">Include Chicken 65 / Chilli Starter Pack (+₹75/person)</label>
+          </div>
+        </div>
+
+        <div class="bg-brand-surfaceLight p-6 rounded-2xl border border-amber-500/20 text-center md:text-left space-y-4">
+          <span class="text-xs uppercase tracking-wider font-bold text-stone-400">Total Estimation</span>
+          <div>
+            <div class="text-4xl font-black text-amber-400" id="partyTotalDisplay">₹1,920</div>
+            <p class="text-xs text-stone-400 mt-1">Approximate total cost for your group</p>
+          </div>
+
+          <div class="text-xs text-stone-300 space-y-1.5 pt-3 border-t border-brand-border">
+            <div><i class="fa-solid fa-check text-amber-400 mr-1.5"></i> <span id="partyPortionText">12 Individual Meal Boxes</span></div>
+            <div><i class="fa-solid fa-check text-amber-400 mr-1.5"></i> Large containers of Salan & Onion Raitha</div>
+            <div><i class="fa-solid fa-check text-amber-400 mr-1.5"></i> Sliced lemons, onions & cutlery included</div>
+          </div>
+
+          <button id="order-party-wa-btn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition">
+            <i class="fa-brands fa-whatsapp text-base"></i> Reserve via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
