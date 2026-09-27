@@ -1,0 +1,289 @@
+<!-- LIVE SPICE LEVEL & PORTION CUSTOMIZER -->
+<section id="customizer" class="py-16 bg-brand-surface border-y border-brand-border">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    
+    <div class="bg-gradient-to-b from-brand-surfaceLight to-brand-surface p-6 sm:p-10 rounded-3xl border border-amber-500/30 shadow-2xl">
+      <div class="max-w-2xl mb-8">
+        <span class="text-amber-500 text-xs font-bold tracking-widest uppercase">Signature Experience</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-white font-heading mt-1" data-en="Customize Your Biryani Spice Level" data-te="మీ అభిరుచికి తగినట్లు కారం ఎంచుకోండి">
+          Customize Your Biryani Spice Level
+        </h2>
+        <p class="text-stone-400 text-xs sm:text-sm mt-1 leading-relaxed">
+          Every palate is different. Choose how spicy your portion will be when collected fresh at our counter.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div data-spice="Mild Saffron Aroma" class="spice-card cursor-pointer bg-brand-darkBg p-5 rounded-2xl border-2 border-brand-border hover:border-amber-400 transition">
+          <div class="text-amber-400 text-xl mb-3"><i class="fa-solid fa-leaf"></i></div>
+          <h3 class="font-bold text-white text-base">Mild &amp; Aromatic</h3>
+          <p class="text-stone-400 text-xs mt-2 leading-relaxed">Subtle cardamom and clove hints. Ideal for kids, seniors, and travelers preferring low chilli heat.</p>
+          <span class="inline-block mt-4 text-[10px] uppercase font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded">Gentle Spice</span>
+        </div>
+
+        <div data-spice="Authentic Andhra Medium" class="spice-card active cursor-pointer bg-brand-darkBg p-5 rounded-2xl border-2 border-amber-500 transition">
+          <div class="text-amber-400 text-xl mb-3"><i class="fa-solid fa-pepper-hot"></i></div>
+          <h3 class="font-bold text-white text-base">Authentic Andhra (Recommended)</h3>
+          <p class="text-stone-400 text-xs mt-2 leading-relaxed">The original AJ recipe: roasted green chillies, coriander paste, and spiced gravy infusion.</p>
+          <span class="inline-block mt-4 text-[10px] uppercase font-bold text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded">Default Master Recipe</span>
+        </div>
+
+        <div data-spice="Fiery Guntur Spice" class="spice-card cursor-pointer bg-brand-darkBg p-5 rounded-2xl border-2 border-brand-border hover:border-red-500 transition">
+          <div class="text-red-500 text-xl mb-3"><i class="fa-solid fa-fire-flame-curved"></i></div>
+          <h3 class="font-bold text-white text-base">Fiery Guntur Spice</h3>
+          <p class="text-stone-400 text-xs mt-2 leading-relaxed">Extra sautéed green chillies, crushed black pepper, and spicy salan splash. High spice kick!</p>
+          <span class="inline-block mt-4 text-[10px] uppercase font-bold text-red-400 bg-red-950/60 px-2 py-0.5 rounded">High Heat</span>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-brand-darkBg border border-brand-border">
+        <div class="text-xs text-stone-300">
+          Selected Spice Preference: <span id="current-spice-choice" class="font-bold text-amber-400">Authentic Andhra Medium</span>
+        </div>
+        <button id="add-custom-spice-btn" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-black px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition">
+          Add 1x Chicken Dum with this spice (₹160)
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MENU SECTION -->
+<section id="menu" class="py-20 bg-brand-darkBg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-amber-500 text-xs font-bold tracking-widest uppercase">Freshly Prepared Everyday</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-white font-heading mt-1" data-en="AJ Biryani Kitchen Menu" data-te="వంటకాల మెనూ">AJ Biryani Kitchen Menu</h2>
+      <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
+      <p class="text-stone-400 text-xs sm:text-sm mt-3">Click "+ Add" on any item to build your pickup parcel or order online via WhatsApp.</p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <button data-cat="all" class="category-btn active bg-amber-500 text-black px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition">All Dishes</button>
+      <button data-cat="dum" class="category-btn bg-brand-surfaceLight text-stone-300 hover:text-amber-400 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-brand-border transition">Dum Biryani</button>
+      <button data-cat="starters" class="category-btn bg-brand-surfaceLight text-stone-300 hover:text-amber-400 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-brand-border transition">Starters &amp; Kebabs</button>
+      <button data-cat="combos" class="category-btn bg-brand-surfaceLight text-stone-300 hover:text-amber-400 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-brand-border transition">Jumbo Packs</button>
+      <button data-cat="veg" class="category-btn bg-brand-surfaceLight text-stone-300 hover:text-amber-400 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-brand-border transition">Veg Items</button>
+      <button data-cat="sides" class="category-btn bg-brand-surfaceLight text-stone-300 hover:text-amber-400 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border border-brand-border transition">Extras &amp; Drinks</button>
+    </div>
+
+    <!-- 9 Menu Dish Cards Grid -->
+    <div id="menu-items-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Dish 1 -->
+      <article class="menu-dish-card dum bg-brand-surface rounded-2xl overflow-hidden border border-brand-border p-5 flex flex-col justify-between hover:border-amber-500/50 transition">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=700&q=80" alt="Special Chicken Dum Biryani" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Bestseller</span>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">Special Chicken Dum Biryani</h3>
+              <p class="text-[11px] text-amber-400/90 font-medium">With Salan, Raitha &amp; Boiled Egg</p>
+            </div>
+            <span class="text-lg font-black text-amber-400">₹160</span>
+          </div>
+          <p class="text-stone-400 text-xs mt-3 leading-relaxed">
+            Tender local chicken slow-steamed with aromatic Basmati rice, mint, caramelized onions, and native spices.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+          <span class="text-[11px] text-stone-400 font-semibold"><i class="fa-solid fa-clock text-amber-400"></i> Dum Ready</span>
+          <button data-name="Special Chicken Dum Biryani" data-price="160" class="btn-add-cart bg-amber-500 hover:bg-amber-400 text-black px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+      </article>
+
+      <!-- Dish 2 -->
+      <article class="menu-dish-card dum bg-brand-surface rounded-2xl overflow-hidden border border-brand-border p-5 flex flex-col justify-between hover:border-amber-500/50 transition">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=700&q=80" alt="Chicken Fry Piece Biryani" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">Andhra Spicy</span>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">Chicken Fry Piece Biryani</h3>
+              <p class="text-[11px] text-amber-400/90 font-medium">Crispy Bone-In Fry Topping</p>
+            </div>
+            <span class="text-lg font-black text-amber-400">₹180</span>
+          </div>
+          <p class="text-stone-400 text-xs mt-3 leading-relaxed">
+            Seasoned bone-in chicken deep-fried with red chillies &amp; curry leaves, served over flavoured biryani rice.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+          <span class="text-[11px] text-stone-400 font-semibold"><i class="fa-solid fa-fire text-red-500"></i> Hot &amp; Spicy</span>
+          <button data-name="Chicken Fry Piece Biryani" data-price="180" class="btn-add-cart bg-amber-500 hover:bg-amber-400 text-black px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+      </article>
+
+      <!-- Dish 3 -->
+      <article class="menu-dish-card dum bg-brand-surface rounded-2xl overflow-hidden border border-brand-border p-5 flex flex-col justify-between hover:border-amber-500/50 transition">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80" alt="Tender Mutton Biryani" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-purple-700 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">Rich &amp; Juicy</span>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">Tender Mutton Dum Biryani</h3>
+              <p class="text-[11px] text-amber-400/90 font-medium">Overnight Yogurt Marinade</p>
+            </div>
+            <span class="text-lg font-black text-amber-400">₹260</span>
+          </div>
+          <p class="text-stone-400 text-xs mt-3 leading-relaxed">
+            Melt-in-mouth cuts of young goat meat layered on charcoal dum with authentic whole spices.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+          <span class="text-[11px] text-stone-400 font-semibold"><i class="fa-solid fa-star text-amber-400"></i> Premium Cut</span>
+          <button data-name="Tender Mutton Dum Biryani" data-price="260" class="btn-add-cart bg-amber-500 hover:bg-amber-400 text-black px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+      </article>
+
+      <!-- Dish 4 -->
+      <article class="menu-dish-card starters bg-brand-surface rounded-2xl overflow-hidden border border-brand-border p-5 flex flex-col justify-between hover:border-amber-500/50 transition">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=700&q=80" alt="Andhra Chilli Chicken" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">Andhra Chilli Chicken</h3>
+              <p class="text-[11px] text-amber-400/90 font-medium">Boneless Green Chilli Glaze</p>
+            </div>
+            <span class="text-lg font-black text-amber-400">₹150</span>
+          </div>
+          <p class="text-stone-400 text-xs mt-3 leading-relaxed">
+            Wok-tossed boneless bites with freshly slit green chillies, garlic paste, curry leaves, and spicy glaze.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+          <span class="text-[11px] text-stone-400 font-semibold">Starter / Snack</span>
+          <button data-name="Andhra Chilli Chicken" data-price="150" class="btn-add-cart bg-amber-500 hover:bg-amber-400 text-black px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+      </article>
+
+      <!-- Dish 5 -->
+      <article class="menu-dish-card starters bg-brand-surface rounded-2xl overflow-hidden border border-brand-border p-5 flex flex-col justify-between hover:border-amber-500/50 transition">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=700&q=80" alt="Chicken 65" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">Crispy Chicken 65</h3>
+              <p class="text-[11px] text-amber-400/90 font-medium">Lemon &amp; Curry Leaves Sauté</p>
+            </div>
+            <span class="text-lg font-black text-amber-400">₹150</span>
+          </div>
+          <p class="text-stone-400 text-xs mt-3 leading-relaxed">
+            Marinated in curd, red chilli powder, cumin, deep-fried to a crunchy finish with lemon wedges.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+          <span class="text-[11px] text-stone-400 font-semibold">Starter / Snack</span>
+          <button data-name="Crispy Chicken 65" data-price="150" class="btn-add-cart bg-amber-500 hover:bg-amber-400 text-black px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+      </article>
+
+      <!-- Dish 6 -->
+      <article class="menu-dish-card combos bg-brand-surface rounded-2xl overflow-hidden border-2 border-amber-500/50 p-5 flex flex-col justify-between bg-gradient-to-b from-amber-500/5 to-transparent">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=700&q=80" alt="AJ Biryani Jumbo Family Pack" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 rounded uppercase">Serves 4 - 5 Adults</span>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">AJ Jumbo Family Pack</h3>
+              <p class="text-[11px] text-amber-400 font-medium">4x Biryani + 1x Starter + 4 Eggs</p>
+            </div>
+            <span class="text-lg font-black text-amber-400">₹650</span>
+          </div>
+          <p class="text-stone-400 text-xs mt-3 leading-relaxed">
+            Huge insulated travel box packed with 4 full Biryani servings, 1 Starter dish, 4 Boiled Eggs, 2 Big Salan, 2 Raitha, and Cold Drinks.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+          <span class="text-[11px] text-amber-400 font-bold">Party Favorite</span>
+          <button data-name="AJ Jumbo Family Pack" data-price="650" class="btn-add-cart bg-amber-500 hover:bg-amber-400 text-black px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+      </article>
+
+      <!-- Dish 7 -->
+      <article class="menu-dish-card veg bg-brand-surface rounded-2xl overflow-hidden border border-brand-border p-5 flex flex-col justify-between hover:border-amber-500/50 transition">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?auto=format&fit=crop&w=700&q=80" alt="Paneer Dum Biryani" class="w-full h-full object-cover" />
+            <span class="absolute top-2 left-2 bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">100% Pure Veg</span>
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">Shahi Paneer Dum Biryani</h3>
+              <p class="text-[11px] text-emerald-400 font-medium">Cooked in Separate Veg Vessels</p>
+            </div>
+            <span class="text-lg font-black text-amber-400">₹140</span>
+          </div>
+          <p class="text-stone-400 text-xs mt-3 leading-relaxed">
+            Fresh dairy paneer cubes marinated in curd, mint, and saffron, steamed with premium Basmati and served with Veg Salan.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+          <span class="text-[11px] text-emerald-400 font-semibold">Vegetarian</span>
+          <button data-name="Shahi Paneer Dum Biryani" data-price="140" class="btn-add-cart bg-amber-500 hover:bg-amber-400 text-black px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+      </article>
+
+      <!-- Dish 8 -->
+      <article class="menu-dish-card sides bg-brand-surface rounded-2xl overflow-hidden border border-brand-border p-5 flex flex-col justify-between hover:border-amber-500/50 transition">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=700&q=80" alt="Plain Biryani Kuska Rice" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">Flavoured Biryani Kuska Rice</h3>
+              <p class="text-[11px] text-amber-400/90 font-medium">Seasoned Dum Rice (Meatless)</p>
+            </div>
+            <span class="text-lg font-black text-amber-400">₹100</span>
+          </div>
+          <p class="text-stone-400 text-xs mt-3 leading-relaxed">
+            Aromatic Dum Biryani rice cooked in chicken stock and saffron essence. Great when paired with Chilli Chicken or Pepper Fry.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-brand-border flex items-center justify-between">
+          <span class="text-[11px] text-stone-400 font-semibold">Rice Portion</span>
+          <button data-name="Flavoured Biryani Kuska Rice" data-price="100" class="btn-add-cart bg-amber-500 hover:bg-amber-400 text-black px-4 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-plus"></i> Add
+          </button>
+        </div>
+      </article>
+
+      <!-- Dish 9 -->
+      <article class="menu-dish-card sides bg-brand-surface rounded-2xl overflow-hidden border border-brand-border p-5 flex flex-col justify-between hover:border-amber-500/50 transition">
+        <div>
+          <div class="relative h-44 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=700&q=80" alt="Gulab Jamun Sweet" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-base font-bold text-white">Hot Gulab Jamun (2 Pcs
